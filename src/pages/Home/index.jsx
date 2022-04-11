@@ -22,7 +22,17 @@ export function Home() {
 
   return (
     <div className="container">
-    <h1>Nome: lista de Presença</h1>
+
+
+    <header>
+    <h1>Nome: lista de Presença</h1> 
+    <div>
+          <strong>maria de Lourdes Celeski</strong>
+          <img src="https://github.com/mariaCeleski.png" alt="Foto de perfil" />
+    </div>
+    
+    </header>
+    
     <input type="text" 
     placeholder="Digite o nome..."
     onChange={(e) => setStudentName(e.target.value)} />
