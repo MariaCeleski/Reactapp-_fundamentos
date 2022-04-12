@@ -1,10 +1,12 @@
-import React, { useState } from "react";//hooks {useState, useEffect }
+import React, { useState, useEffect} from "react";//hooks {useState, useEffect }
 import './style.css';
-import { Card } from '../../components/Card'
+import { Card } from '../../components/Card';
+
 
 export function Home() {
   const [studentName, setStudentName] = useState("");
   const [students, setStudents] = useState([]);
+  const [user, setUser] = useState({name: '',avatar: ''})
 
   function handleAddStudent() {
     const newStudent = {
@@ -18,17 +20,29 @@ export function Home() {
 
     setStudents((prevState) => [...prevState, newStudent]);
   }
+//Api de avatar e nome 
+  useEffect(()=>{
+   fetch('https://api.github.com/users/MariaCeleski')
+   .then(response => response.json())
+   .then(data => {
+      setUser({
+        name:data.name,
+        avatar:data.avatar_url,
+      })
+   })
+
+  },[]);
 
 
   return (
     <div className="container">
 
-
     <header>
     <h1>Nome: lista de Presença</h1> 
+    
     <div>
-          <strong>maria de Lourdes Celeski</strong>
-          <img src="https://github.com/mariaCeleski.png" alt="Foto de perfil" />
+          <strong>{user.name}</strong>
+          <img src={user.avatar} alt="Foto de perfil" />
     </div>
     
     </header>
