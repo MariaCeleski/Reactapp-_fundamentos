@@ -21,17 +21,20 @@ export function Home() {
     setStudents((prevState) => [...prevState, newStudent]);
   }
 //Api de avatar e nome 
-  useEffect(()=>{
-   fetch('https://api.github.com/users/MariaCeleski')
-   .then(response => response.json())
-   .then(data => {
-      setUser({
-        name:data.name,
-        avatar:data.avatar_url,
-      })
-   })
+useEffect(() => {
+  async function fetchData() {
+    const response = await  fetch('https://api.github.com/users/MariaCeleski')
+    const data = await response.json();
+      console.log("DADOS =>", data);
 
-  },[]);
+      setUser({
+        name: data.name,
+        avatar: data.avatar_url,
+      });
+    }
+
+    fetchData();
+  }, []);
 
 
   return (
